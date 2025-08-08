@@ -7,19 +7,16 @@ function func(event) {
     imageEl.style.width = `${event.target.value}px`
 };
 
-const box = document.querySelector("#box");
-const buttonStart = document.querySelector("#buttonStart");
+  const box = document.getElementById('box');
 
-buttonStart.addEventListener("click", secondExercise);
+  // Функція переміщення
+  function moveBox(e) {
+    box.style.left = e.clientX + 'px';
+    box.style.top = e.clientY + 'px';
+  }
 
+  // Використовуємо debounce з lodash (100 мс)
+  const debouncedMove = _.debounce(moveBox, 100);
 
-function secondExercise() {
-    document.addEventListener("mousemove", _.debounce((event) => {
-        const x = event.clientX;
-        const y = event.clientY;
-
-        box.style.left = `${x}px`;
-        box.style.top = `${y}px`;
-    }, 100),
-    );
-}
+  // Вішаємо на подію миші
+  document.addEventListener('mousemove', debouncedMove);
