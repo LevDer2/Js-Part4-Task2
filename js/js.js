@@ -1,10 +1,11 @@
 const sliderEl = document.querySelector(".slider__input");
 const imageEl = document.querySelector(".slider__image");
 
-sliderEl.addEventListener("input", _.debounce(func, 10));
+sliderEl.addEventListener("input", _.debounce(func, 300));
 
 function func(event) {
     imageEl.style.width = `${event.target.value}px`
+    imageEl.style.height = `${event.target.value}px`
 };
 
   const box = document.getElementById('box');
